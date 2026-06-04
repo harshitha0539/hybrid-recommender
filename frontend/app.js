@@ -1197,11 +1197,12 @@ function renderRecommendations(data) {
                 <div class="star-rating">${renderStars(r.rating || 0)}</div>
                 <span class="rating-value">${(r.rating || 0).toFixed(1)}</span>
             </div>
-            <div class="rec-card__score">
+                <div class="rec-card__score">
                 Score: ${(r.hybrid_score || 0).toFixed(3)}
                 · Content: ${(r.content_score || 0).toFixed(2)}
                 · Collab: ${(r.collab_score || 0).toFixed(2)}
             </div>
+            ${r.explanation ? `<div class="rec-card__explanation">Reason: ${escapeHtml(r.explanation)}</div>` : ''}
         </div>
     `;
     }).join('');
@@ -1882,6 +1883,7 @@ async function loadRecommendations(title) {
                     · Content: ${(r.content_score || 0).toFixed(2)}
                     · Collab: ${(r.collab_score || 0).toFixed(2)}
                 </div>
+                ${r.explanation ? `<div class="rec-card__explanation">Reason: ${escapeHtml(r.explanation)}</div>` : ''}
             </div>
         `;
         }).join('');
